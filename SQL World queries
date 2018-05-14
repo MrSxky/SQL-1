@@ -1,0 +1,299 @@
+
+                                world
+name	       continent	area	 population	gdp
+Afghanistan	Asia	       652230	  25500100	20343000000
+Albania	        Europe	       28748	  2831741	12960000000
+Algeria	        Africa	       2381741	  37100000	188681000000
+Andorra	        Europe	         468	  78115	         3712000000
+Angola	        Africa	       1246700	  20609294	100990000000
+....
+
+
+1) show the population of Germany
+
+A) select population from world where name = 'Germany';
+
+
+population
+80716000
+
+
+
+2) the name and the population for 'Sweden', 'Norway' and 'Denmark'
+
+A) select name, population from world where name in ('Sweden', 'Norway', 'Denmark');
+
+name	 population
+Denmark	 5634437
+Norway	 5124383
+Sweden	 9675885
+
+
+
+
+3) show the country and the area for countries with an area between 200,000 and 250,000.
+
+A) select name, area from world where area between 200000 and 250000;
+
+
+name	             area
+Belarus	             207600
+Ghana	             238533
+Guinea	             245857
+Guyana	             214969
+Laos	             236800
+Romania	             238391
+Uganda	             241550
+United Kingdom	     242900
+
+
+
+4) Show the name AND POPULATION for the countries that have a population of at least 200 million
+
+A) SELECT name, POPULATION FROM world
+WHERE population > 200000000;
+
+
+
+name	       POPULATION
+Brazil	         202794000
+China	         1365370000
+India	         1246160000
+Indonesia	 252164800
+United States	 318320000
+
+
+
+
+5)the name and the per capita GDP for those countries with a population of at least 200 million.
+
+A) Select name, GDP/population as 'per capita GDP' from world where population > 200000000;
+
+
+name	        per capita GDP
+Brazil	         11115.2648
+China	          6121.7106
+India	          1504.7931
+Indonesia	  3482.0205
+United States	 51032.2945
+
+
+
+6) Show the name and population in millions for the countries of the continent 'South America'. Divide the population by 1000000 to get population in millions.
+
+A) select name, round(population/1000000) as 'population in millions' from world where continent = 'South America'; 
+
+
+
+name	                                 population in..
+Argentina	                              43
+Bolivia	                                      10
+Brazil	                                      203
+Chile	                                       18
+Colombia	                               48
+Ecuador	                                       16
+Guyana	                                        1
+Paraguay	                                7
+Peru	                                       30
+Saint Vincent and the Grenadines	        0
+Suriname	                                1
+Uruguay	                                        3
+Venezuela	                               29
+
+
+
+7) Show the name and population for France, Germany, Italy
+
+A) select name, population from world where name in ( 'France', 'Germany', 'Italy');
+
+
+
+name	population
+France	65906000
+Germany	80716000
+Italy	60782668
+
+
+
+8) Show the countries which have a name that includes the word 'United'
+
+A) select name from world where name like '%United%';
+
+
+
+name
+United Arab Emirates
+United Kingdom
+United States
+
+
+
+9) A country is big if it has an area of more than 3 million sq km or it has a population of more than 250 million.
+
+Show the countries that are big by area or big by population. Show name, population and area.
+
+A) select name, population, area from world where area>3000000 or population>250000000;
+
+
+name	      population	    area
+Australia	 23545500	 7692024
+Brazil	       202794000	   8515767
+Canada	       35427524	        9984670
+China	     1365370000	         9596961
+India	       1246160000	  3166414
+Indonesia	252164800	1904569
+Russia	        146000000	  17125242
+United States	318320000	  9826675
+
+
+
+10) Show the countries that are big by area or big by population but not both. Show name, population and area.
+
+A) select name,population, area from world
+where area>3000000 xor population>250000000;
+
+
+name	      population	area
+Australia	23545500	7692024
+Brazil	      202794000	        8515767
+Canada	       35427524	        9984670
+Indonesia	252164800	1904569
+Russia	       146000000	17125242
+
+
+11) Show the name and population in millions and the GDP in billions for the countries of the continent 'South America'. Use the ROUND function to show the values to two decimal places.
+
+For South America show population in millions and GDP in billions both to 2 decimal places.
+
+A) select name, round(population/1000000,2) as Population, round(gdp/1000000000,2) as GDP from world where continent = 'South America';
+
+
+name	                             Population	GDP
+Argentina	                      42.67	477.03
+Bolivia	                              10.03	27.04
+Brazil	                             202.79	2254.11
+Chile	                              17.77	268.31
+Colombia	                      47.66	369.81
+Ecuador	                              15.77	87.50
+Guyana	                              0.78	2.85
+Paraguay	                      6.78	25.94
+Peru	                              30.48	204.68
+Saint Vincent and the Grenadines	0.11	0.69
+Suriname	                      0.53	5.01
+Uruguay	                             3.29	49.92
+Venezuela	                    28.95	382.42
+
+
+12) Show the name and per-capita GDP for those countries with a GDP of at least one trillion (1000000000000; that is 12 zeros). Round this value to the nearest 1000.
+
+Show per-capita GDP for the trillion dollar countries to the nearest $1000.
+
+A) select name, round((gdp/population),-3) as GDP from world 
+where gdp> 1000000000000;
+
+
+name	         GDP
+Australia	66000
+Brazil	        11000
+Canada	        45000
+China	         6000
+France	        40000
+Germany	        42000
+India	         2000
+Italy	         33000
+Japan	         47000
+Mexico	        10000
+Russia	        14000
+South Korea	22000
+Spain	        28000
+United Kingdom	39000
+United States	51000
+
+
+13) Greece has capital Athens.
+
+Each of the strings 'Greece', and 'Athens' has 6 characters.
+
+Show the name and capital where the name and the capital have the same number of characters.
+
+A)  SELECT name, capital
+  FROM world
+where length(name) = length(capital);
+
+
+name	        capital
+Algeria	        Algiers
+Angola	        Luanda
+Armenia	         Yerevan
+Botswana	Gaborone
+Cameroon	Yaoundé
+Canada	          Ottowa
+Djibouti	Djibouti
+Egypt	          Cairo
+Estonia	          Tallinn
+Fiji	          Suva
+Gambia	            Banjul
+Georgia	           Tbilisi
+Ghana	            Accra
+Greece	           Athens
+Luxembourg	Luxembourg
+Mauritania	Nouakchott
+Peru	            Lima
+Poland	         Warsaw
+Russia	           Moscow
+Rwanda	          Kigali
+San Marino	San Marino
+Singapore	Singapore
+Taiwan	          Taipei
+Turkey	          Ankara
+Zambia	          Lusaka
+
+
+
+14)The capital of Sweden is Stockholm. Both words start with the letter 'S'.
+
+Show the name and the capital where the first letters of each match. Don't include countries where the name and the capital are the same word.
+
+
+A) SELECT name, capital from world where left(name,1) =  left(capital,1) and name <> capital;
+
+
+name	          capital
+Algeria	         Algiers
+Andorra	         Andorra la Vella
+Barbados	Bridgetown
+Belize	            Belmopan
+Brazil	         Brasília
+Brunei	           Bandar Seri Begawan
+Burundi	            Bujumbura
+Guatemala	  Guatemala City
+Guyana	            Georgetown
+Kuwait	           Kuwait City
+Maldives	       Malé
+Marshall Islands	Majuro
+Mexico	            Mexico City
+Monaco	           Monaco-Ville
+Mozambique	      Maputo
+Niger	              Niamey
+Panama	              Panama City
+Papua New Guinea	Port Moresby
+Sao Tomé and Príncipe	São Tomé
+South Korea	          Seoul
+Sri Lanka	Sri Jayawardenepura Kotte
+Sweden	               Stockholm
+Taiwan	                   Taipei
+Tunisia	                    Tunis
+
+
+
+15) Equatorial Guinea and Dominican Republic have all of the vowels (a e i o u) in the name. They don't count because they have more than one word in the name.
+
+Find the country that has all the vowels and no spaces in its name.
+
+A)SELECT NAME FROM world WHERE NAME LIKE '%a%' and NAME LIKE '%e%' and NAME LIKE '%i%' and NAME LIKE '%o%' and NAME LIKE '%u%' AND NAME NOT LIKE '% %';
+
+
+
+NAME
+Mozambique
+
